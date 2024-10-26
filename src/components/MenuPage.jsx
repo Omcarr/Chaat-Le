@@ -1,36 +1,47 @@
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar"; // Import the Navbar
 
 const MenuPage = () => {
+  const [text, setText] = useState("");
+  const message = "Welcome to our personalized quiz to see which item on our menu suits you the best.";
+
+  useEffect(() => {
+    let currentIndex = 0;
+
+    const typeWriterEffect = () => {
+      if (currentIndex < message.length) {
+        // Update text only if currentIndex is within bounds
+        setText(message.slice(0, currentIndex + 1));
+            currentIndex++;
+        setTimeout(typeWriterEffect, 100); // Adjust speed here if needed
+      }
+    };
+
+    typeWriterEffect();
+
+    // Clean up function to avoid memory leaks if component unmounts
+    return () => {
+      currentIndex = message.length; // Stop the effect when component unmounts
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-yellow-100 flex flex-col items-center p-10">
-      <h1 className="text-5xl font-bold text-green-600 mb-10">Chaat-Le Menu</h1>
-      <div className="grid grid-cols-2 gap-8">
-        <div className="bg-green-500 p-6 rounded-lg shadow-md">
-          <h2 className="text-white text-xl font-semibold mb-3">Mexican</h2>
-          <ul className="text-yellow-200">
-            <li>Basic B Nachos - Rs. 40</li>
-            <li>Señor Nachos - Rs. 60</li>
-            <li>Fiesta Nachos - Rs. 100</li>
-          </ul>
-        </div>
-        <div className="bg-green-500 p-6 rounded-lg shadow-md">
-          <h2 className="text-white text-xl font-semibold mb-3">Indian</h2>
-          <ul className="text-yellow-200">
-            <li>Samosa Chaat - Rs. 40</li>
-            <li>Sev Puri - Rs. 40</li>
-            <li>Dahi Puri - Rs. 50</li>
-            <li>Papdi Chaat - Rs. 40</li>
-          </ul>
-        </div>
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-5">
+      <div className="text-2xl text-yellow-400 font-mono text-center max-w-lg mb-8">
+        {text}
       </div>
+
       <Link
         to="/quiz"
-        className="mt-10 bg-yellow-400 text-green-800 font-semibold py-3 px-6 rounded-full hover:bg-yellow-500 transition duration-300"
+        className="mt-8 bg-yellow-400 text-gray-800 font-semibold py-2 px-8 rounded-full hover:bg-yellow-500 transition-all shadow-md"
       >
-        Take the Quiz!
+        Start Test
       </Link>
     </div>
   );
 };
 
 export default MenuPage;
+

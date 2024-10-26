@@ -13,16 +13,16 @@ const ResultPage = ({ result }) => {
   };
 
   return (
-    <div className="min-h-screen bg-yellow-100 flex flex-col items-center justify-center p-10">
-      <div className="bg-green-500 p-8 rounded-lg shadow-md w-full max-w-md text-center">
-        <h1 className="text-3xl text-white font-bold mb-5">Your Perfect Dish</h1>
-        <h2 className="text-2xl text-yellow-300 mb-4">{result}</h2>
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-5">
+      <div className="bg-gray-800 p-6 rounded-3xl shadow-lg w-full max-w-md text-center">
+        <h1 className="text-3xl text-yellow-400 font-bold mb-5">Your Perfect Dish is.. </h1>
+        <h2 className="text-2xl text-yellow-300 mb-3">{result} !!</h2>
         <p className="text-white text-lg mb-5">Price: Rs. {menuItems[result]}</p>
         <Link
           to="/"
-          className="bg-yellow-400 text-green-800 py-2 px-6 rounded-full hover:bg-yellow-500 transition"
+          className="bg-yellow-400 text-gray-800 py-2 px-6 rounded-full hover:bg-yellow-500 transition-all shadow-md"
         >
-          Back to Menu
+          Back to Home 
         </Link>
       </div>
     </div>
